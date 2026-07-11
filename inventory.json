@@ -1,0 +1,74 @@
+{
+    "192.168.1.1": {
+        "status": "up",
+        "last_seen": "2026-07-11 16:52:05",
+        "open_ports": {
+            "53": {
+                "last_seen": "2026-07-11 16:11:14",
+                "banner": "Unknown"
+            },
+            "80": {
+                "last_seen": "2026-07-11 16:11:14",
+                "banner": "Server: ZTE web server 1.0 ZTE corp 2015."
+            },
+            "443": {
+                "last_seen": "2026-07-11 16:11:14",
+                "banner": "Server: ZTE web server 1.0 ZTE corp 2015."
+            }
+        },
+        "credentials": {}
+    },
+    "192.168.1.35": {
+        "status": "up",
+        "last_seen": "2026-07-11 16:52:05",
+        "open_ports": {},
+        "credentials": {}
+    },
+    "192.168.1.42": {
+        "status": "up",
+        "last_seen": "2026-07-11 16:52:05",
+        "open_ports": {},
+        "credentials": {}
+    },
+    "192.168.1.54": {
+        "status": "up",
+        "last_seen": "2026-07-11 16:52:05",
+        "open_ports": {},
+        "credentials": {}
+    },
+    "192.168.1.58": {
+        "status": "up",
+        "last_seen": "2026-07-11 16:52:05",
+        "open_ports": {
+            "22": {
+                "last_seen": "2026-07-11 16:11:22",
+                "banner": "SSH-2.0-OpenSSH_6.6.0"
+            }
+        },
+        "credentials": {}
+    },
+    "192.168.1.91": {
+        "status": "up",
+        "last_seen": "2026-07-11 16:52:05",
+        "open_ports": {},
+        "credentials": {}
+    },
+    "192.168.1.40": {
+        "status": "up",
+        "last_seen": "2026-07-11 16:52:05",
+        "open_ports": {},
+        "credentials": {}
+    },
+    "192.168.1.34": {
+        "status": "up",
+        "last_seen": "2026-07-11 16:52:05",
+        "open_ports": {},
+        "credentials": {}
+    },
+    "192.168.1.41": {
+        "status": "up",
+        "last_seen": "2026-07-11 16:52:05",
+        "open_ports": {},
+        "credentials": {}
+    }
+}

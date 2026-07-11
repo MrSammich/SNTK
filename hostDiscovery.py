@@ -48,38 +48,39 @@ def is_host_alive(ip, delay=0):
 
 
 #this is cursed but works, has inputs and everything. More detail below
-def run_host_discovery():
-    try:                        #encased everything in a try block so i can detect if you hit ctr-c. in this way you wont see python crying
-        while True:
-            user_ip = input ("[?] Enter the ip address you want to scan\n\t > ")
-            user_subnet = input("[?] Enter the subnet mask (default is 24)\n\t > ") or 24
-            
-            try:
-                network = ipaddress.ip_network(f"{user_ip}/{user_subnet}", strict=False)       #looks if the host you entered is dead or alive before you waste time
-            
-            except ValueError:
-                print(f"{RED}[!] Invalid IP address or subnet mask. Please try again.{RESET}\n")
-                continue
+def run_host_discovery(user_ip, user_subnet, user_scan_type, user_filename):
+    try:
+        if user_ip is None:
+            while True:
+                user_ip = input("[?] Enter the ip address you want to scan\n\t > ")
+                user_subnet = input("[?] Enter the subnet mask (default is 24)\n\t > ") or 24
 
+                try:
+                    network = ipaddress.ip_network(f"{user_ip}/{user_subnet}", strict=False)
+                except ValueError:
+                    print(f"{RED}[!] Invalid IP address or subnet mask. Please try again.{RESET}\n")
+                    continue
 
-            user_scan_type = input("[?] Would you like to perform a (D)efault scan or (S)tealth scan?\n\t > ") or "d"
-            user_filename = input("[?] Output filename (default is inventory.json)\n\t > ").strip() or "inventory.json"
+                user_scan_type = input("[?] Would you like to perform a (D)efault scan or (S)tealth scan?\n\t > ") or "d"
+                user_filename = input("[?] Output filename (default is inventory.json)\n\t > ").strip() or "inventory.json"
 
-            if user_scan_type.lower() == "d":               #Aggrasive scan works as fast as it can so you can be done with it quick
-                workers = 50
-                ping_delay = 0
-                print(f"{BLUE}[/] Aggressive scan is underway{RESET}\n")
-                break
+                if user_scan_type.lower() in ("d", "s"):
+                    break
+                else:
+                    print(f"{RED}[!] Invalid input. Please enter D or S.{RESET}")
+                    continue
+        else:
+            network = ipaddress.ip_network(f"{user_ip}/{user_subnet}", strict=False)
 
-            elif user_scan_type.lower() == "s":             #who would have guessed, its the slow one
-                workers = 10
-                ping_delay = 1
-                print(f"{GREEN}[@] Slow scan is underway{RESET}\n")
-                break
-
-            else:
-                print(f"{RED}[!] Invalid input. Please enter D or S.{RESET}")
-                continue
+        # This now runs EVERY time, whether user_ip was given or typed interactively
+        if user_scan_type.lower() == "d":
+            workers = 50
+            ping_delay = 0
+            print(f"{BLUE}[/] Aggressive scan is underway{RESET}\n")
+        elif user_scan_type.lower() == "s":
+            workers = 10
+            ping_delay = 1
+            print(f"{GREEN}[@] Slow scan is underway{RESET}\n")
 
     except KeyboardInterrupt:
         os.system('clear')                           #the keyboard check i was talking about a few lines ago
